@@ -7,13 +7,20 @@ body {
 
 #play-area {
     border: 5px double whitesmoke;
-    height: 500px;
-    width: 500px;
+    height: 35em;
+    width: 35em;
 }
 
 #player {
     height: 20px;
     width: 20px;
     background-color: teal;
+    position: absolute;
+}
+
+#consumable {
+    height: 20px;
+    width: 20px;
+    background-color: tomato;
     position: absolute;
 }
