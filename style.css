@@ -1,3 +1,9 @@
 body {
     background-color: black;
 }
+
+#play-area {
+    border: 5px double whitesmoke;
+    height: 500px;
+    width: 500px;
+}
