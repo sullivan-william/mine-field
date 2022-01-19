@@ -1,7 +1,7 @@
 const player = document.getElementById("player")
 let direction = null;
-let x = 250;
-let y = 550;
+let x = 470;
+let y = 400;
 
 document.addEventListener('keydown', function(e) {
     if (e.repeat) return;

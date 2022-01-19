@@ -1,5 +1,8 @@
 body {
     background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #play-area {
@@ -13,6 +16,4 @@ body {
     width: 20px;
     background-color: teal;
     position: absolute;
-    left: 250px;
-    bottom: 550px;
 }
