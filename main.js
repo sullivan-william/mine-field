@@ -6,16 +6,16 @@ let y = 550;
 document.addEventListener('keydown', function(e) {
     if (e.repeat) return;
 
-    if (e.key === 'ArrowLeft') {
+    if (e.key === 'ArrowLeft' && direction !== 'east') {
         direction = 'west'
     }
-    if (e.key === 'ArrowUp') {
+    if (e.key === 'ArrowUp' && direction !== 'south') {
         direction = 'north'
     }
-    if (e.key === 'ArrowRight') {
+    if (e.key === 'ArrowRight' && direction !== 'west') {
         direction = 'east'
     }
-    if (e.key === 'ArrowDown') {
+    if (e.key === 'ArrowDown' && direction !== 'north') {
         direction = 'south'
     }
 })
