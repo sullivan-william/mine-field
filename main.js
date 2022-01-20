@@ -39,16 +39,33 @@ setInterval(function() {
     }
     player.style.left = x + "px"
     player.style.bottom = y + "px"
-}, 1)
+    detectCollision()
+}, 8)
 
 // Place consumable piece in random spot within play area
+const consumable = document.getElementById("consumable")
+
+cX = 0
+cY = 0
 
 function placeConsumable() {
-    let consumable = document.getElementById("consumable")
     // https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range/1527834
     //keeps random number in set range by utilizing the max and min possible settings
-    consumable.style.left = (Math.random() * (45.9 - 12.2) + 12.2) + "em"
-    consumable.style.bottom = (Math.random() * (41.8 - 8.2) + 8.2) + "em"
+    cX = (Math.random() * (735 - 195) + 195)
+    consumable.style.left = cX + "px"
+    cY = (Math.random() * (670 - 130) + 130)
+    consumable.style.bottom = cY + "px"
 }
 
 placeConsumable()
+
+// Detect collision with consumable and player pieces
+// https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection Checks for colloision using each piece's left position (cX and x), bottom position (cY and y), and width/height(20) to determine if they would touch.
+function detectCollision() {
+    if (cX < x + 20 &&
+        cX + 20 > x &&
+        cY < y + 20 &&
+        cY + 20 > y) {
+            placeConsumable()
+        }
+}
