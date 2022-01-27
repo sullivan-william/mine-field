@@ -6,6 +6,7 @@ body {
 }
 
 #play-area {
+    display: flex;
     border: 5px double whitesmoke;
     height: 35em;
     width: 35em;
@@ -15,12 +16,12 @@ body {
     height: 20px;
     width: 20px;
     background-color: teal;
-    position: absolute;
+    position: relative;
 }
 
 #consumable {
     height: 20px;
     width: 20px;
     background-color: tomato;
-    position: absolute;
+    position: relative;
 }

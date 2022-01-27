@@ -2,8 +2,8 @@
 
 const player = document.getElementById("player")
 let direction = null;
-let x = 470;
-let y = 400;
+let x = 270; 
+let y = -250;
 
 // Add movement to player
 
@@ -24,6 +24,10 @@ document.addEventListener('keydown', function(e) {
     }
 })
 
+// document.addEventListener('keyup', function(e) {
+//     direction = null
+// })
+
 setInterval(function() {
     if (direction === 'west') {
         x = x - 1
@@ -39,8 +43,10 @@ setInterval(function() {
     }
     player.style.left = x + "px"
     player.style.bottom = y + "px"
-    detectCollision()
+    eatConsumable()
+    endGame()
 }, 8)
+
 
 // Place consumable piece in random spot within play area
 const consumable = document.getElementById("consumable")
@@ -51,21 +57,43 @@ cY = 0
 function placeConsumable() {
     // https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range/1527834
     //keeps random number in set range by utilizing the max and min possible settings
-    cX = (Math.random() * (735 - 195) + 195)
+    cX = (Math.random() * (520 + 20) - 20)
     consumable.style.left = cX + "px"
-    cY = (Math.random() * (670 - 130) + 130)
+    cY = (Math.random() * (0 + 540) - 540)
     consumable.style.bottom = cY + "px"
+    // Prevents first placement from being on top of player piece
+    if (x > cX &&
+        x < cX + 40 &&
+        y < cY + 20 &&
+        y > cY - 20) {
+            placeConsumable()
+        }
 }
 
 placeConsumable()
 
+score = 0
+
 // Detect collision with consumable and player pieces
 // https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection Checks for colloision using each piece's left position (cX and x), bottom position (cY and y), and width/height(20) to determine if they would touch.
-function detectCollision() {
-    if (cX < x + 20 &&
-        cX + 20 > x &&
-        cY < y + 20 &&
-        cY + 20 > y) {
+function eatConsumable() {
+    if (x > cX &&
+        x < cX + 40 &&
+        y < cY + 20 &&
+        y > cY - 20) {
             placeConsumable()
+            score = score + 10
+            console.log(score)
+        }
+    }
+
+// Detect collision with border of play area or player piece with player body
+function endGame() {
+    if (x < 0 ||
+        x > 540 ||
+        y > 0 ||
+        y < -540) {
+            player.style.visibility = "hidden"
+            console.log("Game Over!")
         }
 }
