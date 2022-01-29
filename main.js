@@ -4,6 +4,7 @@ const player = document.getElementById("player")
 let direction = null;
 let x = 270; 
 let y = -250;
+score = 0
 
 // Add movement to player
 
@@ -45,7 +46,7 @@ setInterval(function() {
     player.style.bottom = y + "px"
     eatConsumable()
     endGame()
-}, 8)
+}, 1)
 
 
 // Place consumable piece in random spot within play area
@@ -72,8 +73,6 @@ function placeConsumable() {
 
 placeConsumable()
 
-score = 0
-
 // Detect collision with consumable and player pieces
 // https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection Checks for colloision using each piece's left position (cX and x), bottom position (cY and y), and width/height(20) to determine if they would touch.
 function eatConsumable() {
@@ -81,9 +80,9 @@ function eatConsumable() {
         x < cX + 40 &&
         y < cY + 20 &&
         y > cY - 20) {
-            placeConsumable()
             score = score + 10
-            console.log(score)
+            placeConsumable()
+            document.getElementById("score").innerHTML = `Score: ${score}`
         }
     }
 

@@ -5,6 +5,39 @@ body {
     justify-content: center;
 }
 
+#instructions {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    right: 8em;
+    width: 20vw;
+    bottom: 5em;
+}
+
+#game-over {
+    color: white;
+    text-align: center;
+    font-size: large;
+    border: none;
+
+}
+
+h1 {
+    text-align: center;
+    border: 1px solid red;
+    color: red;
+}
+
+h2 {
+    color: white;
+    position: relative;
+}
+
+li {
+    color: white;
+}
+
 #play-area {
     display: flex;
     border: 5px double whitesmoke;
@@ -15,13 +48,20 @@ body {
 #player {
     height: 20px;
     width: 20px;
-    background-color: teal;
+    background-color: skyblue;
     position: relative;
 }
 
 #consumable {
     height: 20px;
     width: 20px;
-    background-color: tomato;
+    background-color: yellow;
+    position: relative;
+}
+
+#mine {
+    height: 20px;
+    width: 20px;
+    background-color: red;
     position: relative;
 }
