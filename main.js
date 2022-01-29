@@ -4,9 +4,9 @@ const player = document.getElementById("player")
 let direction = null
 let x = 270
 let y = -250
-let speed = 3
+let speed = 4
 score = 0
-// highScore = localStorage.getItem("highScore")
+highScore = 0
 gameOver = false
 
 // Consumable variables
@@ -65,7 +65,6 @@ setInterval(function() {
         y = -250
         direction = null 
         console.log("Game Over!")
-        score = 0
 
         // remove mines
         playArea = document.getElementById("play-area").getElementsByTagName("div")
@@ -82,7 +81,21 @@ setInterval(function() {
             }
         }
 
+        // https://stackoverflow.com/questions/29370017/adding-a-high-score-to-local-storage
+        if(highScore !== null) {
+            if(score > highScore) {
+                localStorage.setItem('highScore', score)
+                highScore = localStorage.getItem("highScore")
+                document.getElementById("high-score").innerHTML = `High Score: ${highScore}`
+            }
+        } else {
+            localStorage.setItem("highScore", score)
+            highScore = localStorage.getItem("highScore")
+            document.getElementById("high-score").innerHTML = `High Score: ${highScore}`
+        }
+
         gameOver = false
+        score = 0
     }
     player.style.left = x + "px"
     player.style.bottom = y + "px"
@@ -120,6 +133,10 @@ function eatConsumable() {
         y > cY - 20) {
             score = score + 10
             document.getElementById("score").innerHTML = `Score: ${score}`
+
+            // if (speed > 1) {
+            //     speed = speed - 1
+            // }
 
             placeConsumable()
 
@@ -168,3 +185,5 @@ function endGame() {
             }
     }
 }
+
+// localStorage.clear()
