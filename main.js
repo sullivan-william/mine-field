@@ -4,10 +4,24 @@ const player = document.getElementById("player")
 let direction = null
 let x = 270
 let y = -250
-let speed = 8
+let speed = 3
 score = 0
 // highScore = localStorage.getItem("highScore")
 gameOver = false
+
+// Consumable variables
+
+const consumable = document.getElementById("consumable")
+cX = 0
+cY = 0
+
+// Mine variables
+
+mineLocX = []
+mineLocY = []
+mX = 0
+mY = 0
+z = 20 // used to adjust the x-axis position for each new mine added
 
 // Add movement to player
 
@@ -28,9 +42,9 @@ document.addEventListener('keydown', function(e) {
     }
 })
 
-document.addEventListener('keyup', function(e) {
-    direction = null
-})
+// document.addEventListener('keyup', function(e) {
+//     direction = null
+// })
 
 setInterval(function() {
     if (direction === 'west') {
@@ -78,10 +92,6 @@ setInterval(function() {
 
 
 // Place consumable piece in random spot within play area
-const consumable = document.getElementById("consumable")
-
-cX = 0
-cY = 0
 
 function placeConsumable() {
     // https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range/1527834
@@ -109,24 +119,16 @@ function eatConsumable() {
         y < cY + 20 &&
         y > cY - 20) {
             score = score + 10
+            document.getElementById("score").innerHTML = `Score: ${score}`
+
             placeConsumable()
 
-            // make sure mine placement stays within play area (only works for up to 24 mines on full screen size)
-            z = z + 20
-
+            z = z + 20 // make sure mine placement stays within play area (only works for up to 24 mines on desktop screen size)
             placeMine()
-
-            document.getElementById("score").innerHTML = `Score: ${score}`
         }
     }
 
 // Place mines randomly on the board and keep track of their locations for collison detection
-
-mineLocX = []
-mineLocY = []
-mX = 0
-mY = 0
-z = 20
 
 function placeMine() {
     if (score < 210) {
@@ -139,6 +141,7 @@ function placeMine() {
     mY = (Math.random() * (540) - 540)
     mineLocY.push(mY)
     mine.style.bottom = mY + "px"
+    // make sure initial placement is not on top of player
     } else {
         return
     }
@@ -161,7 +164,7 @@ function endGame() {
             x < mineLocX[i] + 60 + m &&
             y < mineLocY[i] + 20 &&
             y > mineLocY[i] - 20) {
-                console.log("Explosion")
+                gameOver = true
             }
     }
 }
