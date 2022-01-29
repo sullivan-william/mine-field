@@ -47,9 +47,9 @@ document.addEventListener('keydown', function(e) {
     }
 })
 
-// document.addEventListener('keyup', function(e) {
-//     direction = null
-// })
+document.addEventListener('keyup', function(e) {
+    direction = null
+})
 
 setInterval(function() {
     if (direction === 'west') {
@@ -126,6 +126,17 @@ function placeConsumable() {
         y > cY - 20) {
             placeConsumable()
         }
+    // Prevents placement on top of mine
+    for (i = 0; i < mineLocX.length; i++) {
+        m = i * 20
+        // m is to counteract the z measurment throwing off the left postion reading (this is getting complicated!)
+        if (cX > mineLocX[i] + m &&
+            cX < mineLocX[i] + 40 + m &&
+            cY < mineLocY[i] + 20 &&
+            cY > mineLocY[i] - 20) {
+                placeConsumable()
+            }
+    }
 }
 
 placeConsumable()
