@@ -4,6 +4,7 @@ const player = document.getElementById("player")
 let direction = null
 let x = 270
 let y = -250
+let speed = 8
 score = 0
 // highScore = localStorage.getItem("highScore")
 gameOver = false
@@ -73,7 +74,7 @@ setInterval(function() {
     player.style.bottom = y + "px"
     eatConsumable()
     endGame()
-}, 1)
+}, speed)
 
 
 // Place consumable piece in random spot within play area
@@ -114,6 +115,7 @@ function eatConsumable() {
             z = z + 20
 
             placeMine()
+
             document.getElementById("score").innerHTML = `Score: ${score}`
         }
     }
@@ -142,12 +144,24 @@ function placeMine() {
     }
 }
 
-// Detect collision with border of play area or player piece with player body
+// Detect collision with border of play area or mines
 function endGame() {
+    // Collision with border?
     if (x < 0 ||
         x > 540 ||
         y > 0 ||
         y < -540) {
             gameOver = true
         }
+    // Collision with mine?
+    for (i = 0; i < mineLocX.length; i++) {
+        m = i * 20
+        // m is to counteract the z measurment throwing off the left postion reading (this is getting complicated!)
+        if (x > mineLocX[i] + 20 + m &&
+            x < mineLocX[i] + 60 + m &&
+            y < mineLocY[i] + 20 &&
+            y > mineLocY[i] - 20) {
+                console.log("Explosion")
+            }
+    }
 }
