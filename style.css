@@ -13,6 +13,7 @@ body {
     right: 8em;
     width: 20vw;
     bottom: 5em;
+    visibility: hidden;
 }
 
 #game-over {
@@ -48,6 +49,7 @@ li {
     border: 5px double whitesmoke;
     height: 35em;
     width: 35em;
+    visibility: hidden;
 }
 
 #player {
@@ -69,4 +71,23 @@ li {
     width: 20px;
     background-color: red;
     position: relative;
+}
+
+#mobile {
+    position: absolute;
+    color: white;
+}
+
+@media (min-width: 1000px) {
+    #instructions {
+        visibility: visible
+    }
+
+    #play-area {
+        visibility: visible
+    }
+
+    #mobile {
+        display: none
+    }
 }

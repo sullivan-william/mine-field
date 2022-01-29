@@ -1,13 +1,18 @@
 // Create player
 
+console.log(screen.availWidth)
+console.log(screen.availHeight)
+
 const player = document.getElementById("player")
 let direction = null
 let x = 270
 let y = -250
-let speed = 4
+speed = 4
 score = 0
 highScore = 0
 gameOver = false
+
+// Increase speed as score gets higher
 
 // Consumable variables
 
@@ -59,6 +64,7 @@ setInterval(function() {
     if (direction === 'south') {
         y = y - 1
     }
+
     if (gameOver === true) {
         // Reset player position
         x = 270
@@ -133,10 +139,6 @@ function eatConsumable() {
         y > cY - 20) {
             score = score + 10
             document.getElementById("score").innerHTML = `Score: ${score}`
-
-            // if (speed > 1) {
-            //     speed = speed - 1
-            // }
 
             placeConsumable()
 
