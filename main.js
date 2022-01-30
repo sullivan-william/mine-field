@@ -1,18 +1,13 @@
 // Create player
 
-console.log(screen.availWidth)
-console.log(screen.availHeight)
-
 const player = document.getElementById("player")
 let direction = null
 let x = 270
 let y = -250
-speed = 4
+speed = 5
 score = 0
 highScore = 0
 gameOver = false
-
-// Increase speed as score gets higher
 
 // Consumable variables
 
@@ -45,10 +40,6 @@ document.addEventListener('keydown', function(e) {
     if (e.key === 'ArrowDown' && direction !== 'north') {
         direction = 'south'
     }
-})
-
-document.addEventListener('keyup', function(e) {
-    direction = null
 })
 
 setInterval(function() {
@@ -198,5 +189,3 @@ function endGame() {
             }
     }
 }
-
-// localStorage.clear()
