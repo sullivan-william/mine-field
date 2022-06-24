@@ -1,0 +1,92 @@
+body {
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#instructions {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  right: 8em;
+  width: 20vw;
+  bottom: 5em;
+  visibility: hidden;
+}
+
+#game-over {
+  color: white;
+  text-align: center;
+  font-size: large;
+  border: none;
+}
+
+h1 {
+  text-align: center;
+  border: 1px solid red;
+  color: red;
+}
+
+#score {
+  position: relative;
+  color: white;
+}
+
+#high-score {
+  position: relative;
+  color: white;
+}
+
+li {
+  color: white;
+}
+
+#play-area {
+  display: flex;
+  border: 5px double whitesmoke;
+  height: 35em;
+  width: 35em;
+  visibility: hidden;
+}
+
+#player {
+  height: 20px;
+  width: 20px;
+  position: relative;
+  background-color: skyblue;
+}
+
+#consumable {
+  height: 20px;
+  width: 20px;
+  position: relative;
+  background-color: yellow;
+}
+
+.mine {
+  height: 20px;
+  width: 20px;
+  position: relative;
+  background-color: red;
+}
+
+#mobile {
+  position: absolute;
+  color: white;
+}
+
+@media (min-width: 1000px) {
+  #instructions {
+    visibility: visible;
+  }
+  #play-area {
+    visibility: visible;
+  }
+  #mobile {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

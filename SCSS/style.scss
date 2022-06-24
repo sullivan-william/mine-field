@@ -1,5 +1,24 @@
+// variables
+$primary-color: white;
+$background-color: black;
+$secondary-color: red;
+
+//mixin
+@mixin score {
+    position: relative;
+    color: $primary-color;
+}
+
+@mixin play-piece {
+    height: 20px;
+    width: 20px;
+    position: relative;
+}
+
+
+// css
 body {
-    background-color: black;
+    background-color: $background-color;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,31 +36,29 @@ body {
 }
 
 #game-over {
-    color: white;
+    color: $primary-color;
     text-align: center;
     font-size: large;
     border: none;
-
+    
 }
 
 h1 {
     text-align: center;
-    border: 1px solid red;
-    color: red;
+    border: 1px solid $secondary-color;
+    color: $secondary-color;
 }
 
 #score {
-    color: white;
-    position: relative;
+    @include score;
 }
 
 #high-score {
-    color: white;
-    position: relative;
+    @include score;
 }
 
 li {
-    color: white;
+    color: $primary-color;
 }
 
 #play-area {
@@ -53,40 +70,34 @@ li {
 }
 
 #player {
-    height: 20px;
-    width: 20px;
+    @include play-piece;
     background-color: skyblue;
-    position: relative;
 }
 
 #consumable {
-    height: 20px;
-    width: 20px;
+    @include play-piece;
     background-color: yellow;
-    position: relative;
 }
 
 .mine {
-    height: 20px;
-    width: 20px;
-    background-color: red;
-    position: relative;
+    @include play-piece;
+    background-color: $secondary-color;
 }
 
 #mobile {
     position: absolute;
-    color: white;
+    color: $primary-color;
 }
 
 @media (min-width: 1000px) {
     #instructions {
         visibility: visible
     }
-
+    
     #play-area {
         visibility: visible
     }
-
+    
     #mobile {
         display: none
     }
